@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 ?>
 <!doctype html>
 <html lang="en">
@@ -13,8 +13,19 @@
 </head>
 <body>
 <div class="container">
+    <?php
+    if (isset($_SESSION['errorMessage'])){
+        ?>
+        <div class="alert alert-danger">
+            <?= $_SESSION['errorMessage'] ?>
+        </div>
+
+        <?php
+        unset($_SESSION['errorMessage']);
+    }
+    ?>
     <h1>Passez votre commande:</h1>
-    <form action="recap.php" method="post">
+    <form action="recap.php" method="post" enctype="multipart/form-data">
     <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Nom</label>
         <input type="texte"
